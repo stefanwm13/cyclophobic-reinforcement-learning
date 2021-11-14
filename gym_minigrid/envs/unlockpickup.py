@@ -1,4 +1,4 @@
-from gym_minigrid.minigrid import Ball
+from gym_minigrid.minigrid import *
 from gym_minigrid.roomgrid import RoomGrid
 from gym_minigrid.register import register
 
@@ -10,7 +10,7 @@ class UnlockPickup(RoomGrid):
     def __init__(self, seed=None):
         room_size = 6
         super().__init__(
-            num_rows=1,
+            num_rows=2,
             num_cols=2,
             room_size=room_size,
             max_steps=8*room_size**2,
@@ -33,18 +33,46 @@ class UnlockPickup(RoomGrid):
         self.mission = "pick up the %s %s" % (obj.color, obj.type)
 
     def step(self, action):
-        obs, reward, done, info, pos = super().step(action)
-        print(action)
-        print(self.actions.pickup)
-        print(self.carrying)
+        obs, reward, done, info = super().step(action)
+
         if action == self.actions.pickup:
             if self.carrying and self.carrying == self.obj:
                 reward = self._reward()
                 done = True
 
-        return obs, reward, done, info, pos
+        return obs, reward, done, info
+    
+class UnlockPickupFixed(RoomGrid):
+    def __init__(self, seed=None):
+        room_size = 6
+        super().__init__(
+            num_rows=1,
+            num_cols=2,
+            room_size=room_size,
+            max_steps=8*room_size**2,
+            seed=seed
+        )
+        
+        
+    def _gen_grid(self, width, height):
+
+        self.grid = Grid(10, 10)      
+        
+        box = Box('red')
+        
+        #self.put_obj(box, 6, 1)
+        
+        self.agent_pos =(1,1)
+        self.agent_dir = 2
+        #self.put_ob
+  
 
 register(
     id='MiniGrid-UnlockPickup-v0',
     entry_point='gym_minigrid.envs:UnlockPickup'
+)
+
+register(
+    id='MiniGrid-UnlockPickupFixed-v0',
+    entry_point='gym_minigrid.envs:UnlockPickupFixed'
 )

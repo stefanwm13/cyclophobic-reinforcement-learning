@@ -8,7 +8,7 @@ from .rendering import *
 
 # Size in pixels of a tile in the full-scale human view
 TILE_PIXELS = 32
-
+agent_view_size_nxn = 5
 # Map of color names to RGB values
 COLORS = {
     'red'   : np.array([255, 0, 0]),
@@ -16,7 +16,8 @@ COLORS = {
     'blue'  : np.array([0, 0, 255]),
     'purple': np.array([112, 39, 195]),
     'yellow': np.array([255, 255, 0]),
-    'grey'  : np.array([100, 100, 100])
+    'grey'  : np.array([100, 100, 100]),
+    'white'  : np.array([255, 255, 255])
 }
 
 COLOR_NAMES = sorted(list(COLORS.keys()))
@@ -28,7 +29,8 @@ COLOR_TO_IDX = {
     'blue'  : 2,
     'purple': 3,
     'yellow': 4,
-    'grey'  : 5
+    'grey'  : 5,
+    'white' : 6
 }
 
 IDX_TO_COLOR = dict(zip(COLOR_TO_IDX.values(), COLOR_TO_IDX.keys()))
@@ -340,8 +342,8 @@ class Grid:
     tile_cache = {}
 
     def __init__(self, width, height):
-        assert width >= 3
-        assert height >= 3
+        assert width >= 1
+        assert height >= 1
 
         self.width = width
         self.height = height
@@ -417,13 +419,15 @@ class Grid:
 
         return grid
 
-    def slice(self, topX, topY, width, height):
+
+
+    def slice_nxn(self, topX, topY, width, height):
         """
         Get a subset of the grid
         """
 
         grid = Grid(width, height)
-
+    
         for j in range(0, height):
             for i in range(0, width):
                 x = topX + i
@@ -434,6 +438,41 @@ class Grid:
                     v = self.get(x, y)
                 else:
                     v = Wall()
+
+                grid.set(i, j, v)
+                
+        return grid
+
+
+    def slice(self, topX, topY, width, height):
+        """
+        Get a subset of the grid
+        """
+
+        grid = Grid(width, height)
+    
+        
+        for j in range(0, height):
+            for i in range(0, width):
+                x = topX + i
+                y = topY + j
+                
+                if x == topX+1 and y == topY+1:
+                    #print("X: ", x)
+                    #print("Y: ", y)
+                    v = self.get(x,y)
+                else:
+                    v = Wall("white")
+        #for j in range(0, height):
+            #for i in range(0, width):
+                #x = topX + i
+                #y = topY + j
+
+                #if x >= 0 and x < self.width and \
+                   #y >= 0 and y < self.height:
+                    #v = self.get(x, y)
+                #else:
+                    #v = Wall()
 
                 grid.set(i, j, v)
 
@@ -655,7 +694,7 @@ class MiniGridEnv(gym.Env):
         max_steps=100,
         see_through_walls=False,
         seed=1337,
-        agent_view_size=7
+        agent_view_size=3
     ):
         # Can't set both grid_size and width/height
         if grid_size:
@@ -671,6 +710,7 @@ class MiniGridEnv(gym.Env):
 
         # Number of cells (width and height) in the agent view
         self.agent_view_size = agent_view_size
+        
 
         # Observations are dictionaries containing an
         # encoding of the grid and a textual 'mission' string
@@ -1023,6 +1063,36 @@ class MiniGridEnv(gym.Env):
 
         return vx, vy
 
+    def get_view_exts_nxn(self):
+        """
+        Get the extents of the square set of tiles visible to the agent
+        Note: the bottom extent indices are not included in the set
+        """
+        # Facing right
+        if self.agent_dir == 0:
+            topX = self.agent_pos[0]
+            topY = self.agent_pos[1] - agent_view_size_nxn // 2
+        # Facing down
+        elif self.agent_dir == 1:
+            topX = self.agent_pos[0] - agent_view_size_nxn // 2
+            topY = self.agent_pos[1]
+        # Facing left
+        elif self.agent_dir == 2:
+            topX = self.agent_pos[0] - agent_view_size_nxn + 1
+            topY = self.agent_pos[1] - agent_view_size_nxn // 2
+        # Facing up
+        elif self.agent_dir == 3:
+            topX = self.agent_pos[0] - agent_view_size_nxn // 2
+            topY = self.agent_pos[1] - agent_view_size_nxn + 1
+        else:
+            assert False, "invalid agent direction"
+
+        botX = topX + 5
+        botY = topY + 5
+
+        return (topX, topY, botX, botY)
+
+
     def get_view_exts(self):
         """
         Get the extents of the square set of tiles visible to the agent
@@ -1155,7 +1225,40 @@ class MiniGridEnv(gym.Env):
         obs = self.gen_obs()
 
         #print(self.agent_pos)
-        return obs, reward, done, {}, [self.agent_pos, self.agent_dir]
+        return obs, reward, done, {"pos_dir":[self.agent_pos, self.agent_dir]}, 
+
+    def gen_obs_grid_nxn(self):
+        """
+        Generate the sub-grid observed by the agent.
+        This method also outputs a visibility mask telling us which grid
+        cells the agent can actually see.
+        """
+
+        topX, topY, botX, botY = self.get_view_exts_nxn()
+
+        grid = self.grid.slice_nxn(topX, topY, agent_view_size_nxn, agent_view_size_nxn)
+
+        for i in range(self.agent_dir + 1):
+            grid = grid.rotate_left()
+
+        # Process occluders and visibility
+        # Note that this incurs some performance cost
+        #if not self.see_through_walls:
+            #vis_mask = grid.process_vis(agent_pos=(self.agent_view_size // 2 , self.agent_view_size - 1))
+        #else:
+        vis_mask = np.ones(shape=(grid.width, grid.height), dtype=np.bool)
+
+        # Make it so the agent sees what it's carrying
+        # We do this by placing the carried object at the agent's position
+        # in the agent's partially observable view
+        agent_pos = grid.width // 2, grid.height - 1
+        if self.carrying:
+            grid.set(*agent_pos, self.carrying)
+        else:
+            grid.set(*agent_pos, None)
+
+        return grid, vis_mask
+
 
     def gen_obs_grid(self):
         """
@@ -1173,10 +1276,10 @@ class MiniGridEnv(gym.Env):
 
         # Process occluders and visibility
         # Note that this incurs some performance cost
-        if not self.see_through_walls:
-            vis_mask = grid.process_vis(agent_pos=(self.agent_view_size // 2 , self.agent_view_size - 1))
-        else:
-            vis_mask = np.ones(shape=(grid.width, grid.height), dtype=np.bool)
+        #if not self.see_through_walls:
+            #vis_mask = grid.process_vis(agent_pos=(self.agent_view_size // 2 , self.agent_view_size - 1))
+        #else:
+        vis_mask = np.ones(shape=(grid.width, grid.height), dtype=np.bool)
 
         # Make it so the agent sees what it's carrying
         # We do this by placing the carried object at the agent's position
@@ -1195,9 +1298,11 @@ class MiniGridEnv(gym.Env):
         """
 
         grid, vis_mask = self.gen_obs_grid()
+        grid_nxn, vis_mask_nxn = self.gen_obs_grid_nxn()
 
         # Encode the partially observable view into a numpy array
         image = grid.encode(vis_mask)
+        image_nxn = grid_nxn.encode(vis_mask_nxn)
 
         assert hasattr(self, 'mission'), "environments must define a textual mission string"
 
@@ -1208,10 +1313,30 @@ class MiniGridEnv(gym.Env):
         obs = {
             'image': image,
             'direction': self.agent_dir,
-            'mission': self.mission
+            'mission': self.mission,
+            'image_nxn': image_nxn
         }
 
         return obs
+
+
+    def get_obs_render_nxn(self, obs, tile_size=TILE_PIXELS//2):
+        """
+        Render an agent observation for visualization
+        """
+
+        grid, vis_mask = Grid.decode(obs)
+
+        # Render the whole grid
+        img = grid.render(
+            tile_size,
+            agent_pos=(agent_view_size_nxn // 2, agent_view_size_nxn - 1),
+            agent_dir=3,
+            highlight_mask=vis_mask
+        )
+
+        return img
+
 
     def get_obs_render(self, obs, tile_size=TILE_PIXELS//2):
         """
@@ -1227,6 +1352,65 @@ class MiniGridEnv(gym.Env):
             agent_dir=3,
             highlight_mask=vis_mask
         )
+
+        return img
+
+    def render_nxn(self, mode='human', close=False, highlight=True, tile_size=TILE_PIXELS):
+        """
+        Render the whole-grid human view
+        """
+
+        if close:
+            if self.window:
+                self.window.close()
+            return
+
+        if mode == 'human' and not self.window:
+            import gym_minigrid.window
+            self.window = gym_minigrid.window.Window('gym_minigrid')
+            self.window.show(block=False)
+
+        # Compute which cells are visible to the agent
+        _, vis_mask = self.gen_obs_grid_nxn()
+
+        # Compute the world coordinates of the bottom-left corner
+        # of the agent's view area
+        f_vec = self.dir_vec
+        r_vec = self.right_vec
+        top_left = self.agent_pos + f_vec * (agent_view_size_nxn-1) - r_vec * (agent_view_size_nxn // 2)
+
+        # Mask of which cells to highlight
+        highlight_mask = np.zeros(shape=(self.width, self.height), dtype=np.bool)
+
+        # For each cell in the visibility mask
+        for vis_j in range(0, agent_view_size_nxn):
+            for vis_i in range(0, agent_view_size_nxn):
+                # If this cell is not visible, don't highlight it
+                if not vis_mask[vis_i, vis_j]:
+                    continue
+
+                # Compute the world coordinates of this cell
+                abs_i, abs_j = top_left - (f_vec * vis_j) + (r_vec * vis_i)
+
+                if abs_i < 0 or abs_i >= self.width:
+                    continue
+                if abs_j < 0 or abs_j >= self.height:
+                    continue
+
+                # Mark this cell to be highlighted
+                highlight_mask[abs_i, abs_j] = True
+
+        # Render the whole grid
+        img = self.grid.render(
+            tile_size,
+            self.agent_pos,
+            self.agent_dir,
+            highlight_mask=highlight_mask if highlight else None
+        )
+
+        if mode == 'human':
+            self.window.show_img(img)
+            self.window.set_caption(self.mission)
 
         return img
 

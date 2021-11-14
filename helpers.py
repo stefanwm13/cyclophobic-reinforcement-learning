@@ -297,11 +297,11 @@ class AutoResetWrapper(gym.Wrapper):
     def step(self, action):
         if self._terminated:
             self.env.reset()
-        observation, reward, terminal, info, pos = self.env.step(action)
-        #observation, reward, terminal, info = self.env.step(action)
+        #observation, reward, terminal, info, pos = self.env.step(action)
+        observation, reward, terminal, info = self.env.step(action)
 
         self._terminated = terminal
-        return observation, reward, terminal, info, pos
+        return observation, reward, terminal, info#, pos
     
     def reset(self, **kwargs):
         observation = self.env.reset(**kwargs)
@@ -349,8 +349,8 @@ class EpisodeInfoWrapper(gym.Wrapper):
         self.total_length = 0.0
 
     def step(self, action):
-        observation, reward, terminal, info, pos = self.env.step(action)
-        #observation, reward, terminal, info = self.env.step(action)
+        #observation, reward, terminal, info, pos = self.env.step(action)
+        observation, reward, terminal, info = self.env.step(action)
 
         self.total_reward += reward
         self.total_length += 1.0
@@ -361,7 +361,7 @@ class EpisodeInfoWrapper(gym.Wrapper):
             info['episode'] = episode_info
             self.total_reward = 0.0
             self.total_length = 0.0
-        return observation, reward, terminal, info, pos
+        return observation, reward, terminal, info#, pos
 
     def reset(self, **kwargs):
         self.total_reward = 0.0
@@ -556,7 +556,7 @@ class PreprocessFrameWrapper(gym.ObservationWrapper):
 
     def observation(self, frame):
         frame = cv2.resize(frame, (self.width, self.height), interpolation=cv2.INTER_AREA)  # scale
-        frame = np.asarray(frame, dtype=np.float32)
+        #frame = np.asarray(frame, dtype=np.float32)
         return frame
 
 

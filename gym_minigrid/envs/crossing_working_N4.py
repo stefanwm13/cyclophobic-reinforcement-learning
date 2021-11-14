@@ -215,10 +215,10 @@ class CrossingEnv(MiniGridEnv):
         self.put_obj(self.obstacle_type(), 6, 1)
         self.put_obj(self.obstacle_type(), 6, 2)
         
-        self.put_obj(self.obstacle_type(), 6, 3)
-
         self.put_obj(self.obstacle_type(), 6, 4)
+
         self.put_obj(self.obstacle_type(), 6, 5)
+        self.put_obj(self.obstacle_type(), 6, 6)
         self.put_obj(self.obstacle_type(), 6, 7)
         #self.put_obj(self.obstacle_type(), 6, 8)
         #self.put_obj(self.obstacle_type(), 6, 9)
@@ -232,10 +232,52 @@ class CrossingEnv(MiniGridEnv):
         #self.put_obj(self.obstacle_type(), 3, 6)
         #self.put_obj(self.obstacle_type(), 4, 6)
         #self.put_obj(self.obstacle_type(), 5, 6)
+        self.put_obj(self.obstacle_type(), 6, 6)
+        self.put_obj(self.obstacle_type(), 6, 7)
         self.put_obj(self.obstacle_type(), 6, 8)
         self.put_obj(self.obstacle_type(), 6, 9)
         self.put_obj(self.obstacle_type(), 6, 10)
         self.put_obj(self.obstacle_type(), 6, 11)
+        
+##########################################################
+        self.put_obj(self.obstacle_type(), 3, 1)
+        self.put_obj(self.obstacle_type(), 3, 2)
+        self.put_obj(self.obstacle_type(), 3, 3)
+        self.put_obj(self.obstacle_type(), 3, 4)
+
+        self.put_obj(self.obstacle_type(), 3, 5)
+        self.put_obj(self.obstacle_type(), 3, 6)
+        self.put_obj(self.obstacle_type(), 3, 7)
+        self.put_obj(self.obstacle_type(), 3, 8)
+        self.put_obj(self.obstacle_type(), 3, 10)
+        self.put_obj(self.obstacle_type(), 3, 11)
+        
+        
+        self.put_obj(self.obstacle_type(), 8, 1)
+        self.put_obj(self.obstacle_type(), 8, 2)
+        self.put_obj(self.obstacle_type(), 8, 3)
+        self.put_obj(self.obstacle_type(), 8, 4)
+
+        self.put_obj(self.obstacle_type(), 8, 5)
+        self.put_obj(self.obstacle_type(), 8, 6)
+        self.put_obj(self.obstacle_type(), 8, 7)
+        self.put_obj(self.obstacle_type(), 8, 8)
+        self.put_obj(self.obstacle_type(), 8, 10)
+        self.put_obj(self.obstacle_type(), 8, 11)
+        
+        
+        self.put_obj(self.obstacle_type(), 10, 1)
+        self.put_obj(self.obstacle_type(), 10, 2)
+        self.put_obj(self.obstacle_type(), 10, 3)
+        self.put_obj(self.obstacle_type(), 10, 5)
+
+        self.put_obj(self.obstacle_type(), 10, 6)
+        self.put_obj(self.obstacle_type(), 10, 7)
+        self.put_obj(self.obstacle_type(), 10, 8)
+        self.put_obj(self.obstacle_type(), 10, 9)
+        self.put_obj(self.obstacle_type(), 10, 10)
+        self.put_obj(self.obstacle_type(), 10, 11)
+        
         #self.put_obj(self.obstacle_type(), 7, 7)
         #self.put_obj(self.obstacle_type(), 8, 7)
         #self.put_obj(self.obstacle_type(), 9, 7)

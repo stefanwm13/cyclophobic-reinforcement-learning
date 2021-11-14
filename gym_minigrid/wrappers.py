@@ -186,6 +186,35 @@ class RGBImgObsWrapper(gym.core.ObservationWrapper):
         }
 
 
+class RGBImgNxNObsWrapper(gym.core.ObservationWrapper):
+    def __init__(self, env, tile_size=8):
+        super().__init__(env)
+
+        self.tile_size = tile_size
+        
+
+        obs_shape = env.observation_space['image'].shape
+        self.observation_space.spaces['image'] = spaces.Box(
+            low=0,
+            high=255,
+            shape=(obs_shape[0] * tile_size, obs_shape[1] * tile_size, 3),
+            dtype='uint8'
+        )
+        
+    def observation(self, obs):
+        env = self.unwrapped
+        
+        rgb_img_nxn = env.get_obs_render_nxn(
+            obs['image_nxn'],
+            tile_size=self.tile_size
+        )
+        
+        return {
+            'mission': obs['mission'],
+            'image': rgb_img_nxn
+        }
+    
+
 class RGBImgPartialObsWrapper(gym.core.ObservationWrapper):
     """
     Wrapper to use partially observable RGB image as the only observation output

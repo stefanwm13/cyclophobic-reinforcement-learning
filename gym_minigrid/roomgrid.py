@@ -196,7 +196,7 @@ class RoomGrid(MiniGridEnv):
             kind = self._rand_elem(['key', 'ball', 'box'])
 
         if color == None:
-            color = self._rand_color()
+            color = 'red' #self._rand_color()
 
         # TODO: we probably want to add an Object.make helper function
         assert kind in ['key', 'ball', 'box']
@@ -225,10 +225,10 @@ class RoomGrid(MiniGridEnv):
                     break
 
         if color == None:
-            color = self._rand_color()
+            color = 'yellow'
 
         if locked is None:
-            locked = self._rand_bool()
+            locked = True
 
         assert room.doors[door_idx] is None, "door already exists"
 

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 import time
 import argparse
@@ -6,8 +5,8 @@ import numpy as np
 import cv2
 import gym
 import gym_minigrid
-from gym_minigrid.wrappers import *
-from gym_minigrid.window import Window
+from gym_minigrid import wrappers as mg_wrappers
+from window import Window
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 
@@ -143,12 +142,12 @@ args = parser.parse_args()
 env = gym.make(args.env)
 
 if args.agent_view:
-    env = RGBImgObsWrapper(env)
+    env = mg_wrappers.RGBImgObsWrapper(env)
     #env = FullyObsWrapper(env)
-    env = ImgObsWrapper(env)
+    env = mg_wrappers.ImgObsWrapper(env)
     #print(env)
     #env = FlatObsWrapper(env)
-    env = PreprocessFrameWrapper(env, 120, 120)   # preprocess (scale down) the observations
+    env = mg_wrappers.PreprocessFrameWrapper(env, 120, 120)   # preprocess (scale down) the observations
 
     #env = mg_wrappers.RGBImgObsWrapper(env)     # extract the rgb image observation from the default state dict
     #env = mg_wrappers.FullyObsWrapper(env)      # use fully observable states
