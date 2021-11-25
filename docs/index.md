@@ -1,3 +1,3 @@
 ## Test site
 
-![Book logo](/assets/cyclemapping.pdf)
+![Book logo](/cyclophobic-reinforcement-learning/assets/cyclemapping.pdf)
