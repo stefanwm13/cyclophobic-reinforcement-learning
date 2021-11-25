@@ -1,3 +1,13 @@
+### Abstract
+
+One of the trademarks of reinforcement learning is that the learning agent is in an experimental setting. Here, the goal of the agent is to navigate an environment successfully by performing a set of tasks. Especially, deep learning has contributed to the ability to solve complex problems thanks to the high functional capacity of neural networks. However, generalization proves difficult as the fitted models are too fragile when the task becomes more complex and the environments are changed. I propose
+that a natural way to approach generalization is to learn a representation of the objects that represent the task in the environment. For this,
+we take a brief look at category theory reasoning about how one can describe abstract objects from a functional perspective. That is, to represent objects by the transformations they elicit. In this sense, exploring the environment systematically is an important component for finding objects.This leads to defining an appropriate inductive bias based on cycles that characterizes the impact state-action pair has on the agents curiosity. The objects in the environment are characterized by a unique action
+inherent to the object together with a raw partial view, where the agent sees only what’s immediately in front. Here, the raw view only acts as
+a key for finding the object. The agent is tested on a series of MiniGrid Key-Door environments where the agent must open doors with a key and
+pickup certain objects. A reward is only provided when finding the goal. Overall, We perform similar to state of the art methods, with a much
+simpler algorithm and requiring almost 10x less steps to achieve similar performance.
+
 #### Structure of state-space for object and non-object views
 ![Book logo](/cyclophobic-reinforcement-learning/assets/cyclemapping.png)
 - Given a successful trajectory that can be extracted from a smaller environment.
