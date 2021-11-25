@@ -1,5 +1,7 @@
 ## Test site
 
+
+#### Structure of state-space for object and non-object views
 ![Book logo](/cyclophobic-reinforcement-learning/assets/cyclemapping.png)
 - Given a successful trajectory that can be extracted from a smaller environment.
 - For views that contain an object we have that the mappings $$f$$ and $g$ are injective i.e. one-to-one.
