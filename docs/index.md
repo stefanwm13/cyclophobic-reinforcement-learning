@@ -1,6 +1,3 @@
-## Test site
-
-
 #### Structure of state-space for object and non-object views
 ![Book logo](/cyclophobic-reinforcement-learning/assets/cyclemapping.png)
 - Given a successful trajectory that can be extracted from a smaller environment.
