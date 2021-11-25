@@ -7,6 +7,8 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 
 ![Book logo](/cyclophobic-reinforcement-learning/assets/result_11x11.png)
 
+![Book logo](/cyclophobic-reinforcement-learning/assets/result_up_8x8.png)
+
 
 #### Structure of state-space for object and non-object views
 ![Book logo](/cyclophobic-reinforcement-learning/assets/cyclemapping.png)
