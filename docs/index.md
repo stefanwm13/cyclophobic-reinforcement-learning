@@ -6,7 +6,9 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 
 ## Results
 The cyclophobic agent is tested on 3 different environments. 
-
+<p align="center">
+  <img width="460" height="300" src=/cyclophobic-reinforcement-learning/assets/result_8x8.png">
+</p>
 ![Doorkey-8x8](/cyclophobic-reinforcement-learning/assets/result_8x8.png)
 
 ![Doorkey-11x11](/cyclophobic-reinforcement-learning/assets/result_11x11.png)
