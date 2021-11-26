@@ -49,7 +49,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
     - It is used as object representation! 
   </dd>
   <dt>Properties of projections $f$ and $g$ change whether an object view or non-object view is the current state</dt>
-    - For views that contain an object we have that the mappings $f\$ and $g\$ are injective i.e. one-to-one.
-    - For views that don't contain an object the mappings $f\$ and $g\$ are surjective.  
-    - In some cases themappings may also be surjective for views with objects, however the number of elements in $A\$ and $B\$ is considerablys maller than in the non-object case.
+  - For views that contain an object we have that the mappings $f\$ and $g\$ are injective i.e. one-to-one.
+  - For views that don't contain an object the mappings $f\$ and $g\$ are surjective.  
+  - In some cases themappings may also be surjective for views with objects, however the number of elements in $A\$ and $B\$ is considerablys maller than in the non-object case.
 </dl>
