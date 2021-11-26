@@ -9,10 +9,10 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 ## Results
 ### The cyclophobic agent is tested on 3 different environments:
 <dl>
-<dt>MiniGrid-DoorKey-8x8-v0</dt>
-<dd>In this environment the agent has to pickup a key to open a door. After every episode the position of key, door and wall are change randomly. This is a sparse reward environment meaning that the agent only gets a reward when reaching the green goal state. Thus, the agent has to solve the environment without any extrinsical reward as feedback about its actions</dd>
+<dt>MiniGrid-DoorKey-8x8-v0 and MiniGrid-DoorKey-11x11-v0 </dt>
+<dd>In this environment the agent has to pickup a key to open a door. After every episode the position of key, door and wall are change randomly. This is a sparse reward environment meaning that the agent only gets a reward when reaching the green goal state. Thus, the agent has to solve the environment without any extrinsical reward as feedback about its actions.</dd>
 <dt>MiniGrid-UnlockPickup-8x8-v0</dt>
-<dd>This environment is an extension of the DoorKey environment. Not only has the agent to pickup a key and open a door, but then drop the key and pickup the box to complete the environment and get a reward. This is especially difficult because the agent needs to understand the fact the key must be dropped after opening the door. Furthermore, the box can be destroyed if the agent uses the 'toggle' instead of the 'pickup' action</dd>
+<dd>This environment is an extension of the DoorKey environment. Not only has the agent to pickup a key and open a door, but then drop the key and pickup the box to complete the environment and get a reward. This is especially difficult because the agent needs to understand the fact the key must be dropped after opening the door. Furthermore, the box can be destroyed if the agent uses the 'toggle' instead of the 'pickup' action.</dd>
 </dl>
 
 
