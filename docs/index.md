@@ -37,7 +37,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
   <img src="assets/cyclemapping.png">
 </p>
 
-- $f$ is a projection of the full view $A$ and to the partial 5x5 view $B$ 
+- $f: A \rightarrow B$ is a projection of the full view $A$ and to the partial 5x5 view $B$ 
 - $g$ is a projection of view $B$ to the smallest view $C$, which contains the cell immediately in front of the agent.
   - It is used as object representation!
 - For views that contain an object we have that the mappings $f\$ and $g\$ are injective i.e. one-to-one.
