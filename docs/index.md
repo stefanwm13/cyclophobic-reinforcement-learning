@@ -11,11 +11,11 @@ The cyclophobic agent is tested on 3 different environments.
   <img width="460" height="300" src="assets/result_8x8.png">
 </p>
 <p align="center">
-  <img width="460" height="300" src="/cyclophobic-reinforcement-learning/assets/result_11x11.png">
+  <img width="460" height="300" src="assets/result_11x11.png">
 </p>
 
 <p align="center">
-  <img width="460" height="300" src="/cyclophobic-reinforcement-learning/assets/result_up_8x8.png">
+  <img width="460" height="300" src="assets/result_up_8x8.png">
 </p>
 
 ### Structure of state-space for object and non-object views
