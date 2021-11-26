@@ -51,6 +51,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
   - This is a rudimentary form of attention on objects induced by the agents behaviour in the trajectory.
   - Manipulating an object is a salient event for the agent compared to moving inempty space not linked to an object. 
 
+* * *
 
 ## Cycles as Inductive Bias for Exploration and Object Discovery
 ### Defining agent's update rule
@@ -82,3 +83,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 <p align="center">
   <img src="assets/actionvector.png">
 </p>
+- Every entry in the action vector now describes how likely a cycle is to occurr if action $a$ is taken.
+- For a view that contains an object, the cycle value identifies a specific action that causes less cycles than the other actions.  
+- For a view that contains a non-object the cycle values are non-specific.
+- 
