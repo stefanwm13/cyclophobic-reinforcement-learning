@@ -61,7 +61,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
   **Defining a cycle**
   - Given a sequence of states $$\bar{s} = \{s_1, s_2, \ldots, s_l \}$$
   - A cycle is defined as encountering the same observation twice in a sequence: $$s' = s_1 \lor s' = s_2 \lor \ldots \lor s' = s_l$$, where s' is the next state producing a cycle.
-  - Then given state $s$, the probability that the action $a$ produces a cycle is: $$p(s' | s, a)$$
+  - Then given state $s$, the probability that the action $a$ produces a cycle is: $p(s' | s, a)$
     
   **Cycle penalty**
   - Say we encounter such a transition (s, a, s') which produces a cycle: 
