@@ -79,3 +79,6 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
   - The final full reward for the transition then is: $r = r^{ex} - (r^c / \lambda^c) / N_c(s_t, a_t)$.
 
 ### Cycle penalty as inductive bias for object discovery
+<p align="center">
+  <img src="assets/actionvector.png">
+</p>
