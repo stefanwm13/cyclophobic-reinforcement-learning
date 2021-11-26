@@ -26,7 +26,11 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
   <img src="assets/result_up_8x8.png">
 </p>
 
-## Structure of state-space for object and non-object views
+* * *
+
+## Motivation for Cycles as Inductive Bias
+#### Exploiting structure of state-space for object and non-object views
+
 <p align="center">
   <img src="assets/cyclemapping.png">
 </p>
