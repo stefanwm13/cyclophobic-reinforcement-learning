@@ -75,4 +75,4 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
   - We thus weight $r^c$ according to the cycle size:
     - Let $\tau_{t=g} = \{s_k, a_k, s_{k+1}\} and \tau_{t=h} = \{s_n, a_n, s_k\}$ be two transitions that occur at timesteps $g$ and $h$. Moreover, $\tau_{t=h}$ produces a cycle as it encounters state $s_k$ from $\tau_{t=g}$.
     - Then the cycle size is: $\lambda^c = h - g$.
-    - Thus the noralized intrinsic reward $r^c$ is extended as follows: $r_^c = r^c / \lambda^c$.
+    - Thus the noralized intrinsic reward $r^c$ is extended as follows: $r^c = r^c / \lambda^c$.
