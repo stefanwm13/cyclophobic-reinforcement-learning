@@ -22,6 +22,7 @@ The cyclophobic agent is tested on 3 different environments.
 <p align="center">
   <img src="assets/cyclemapping.png">
 </p>
+
 - Given a successful trajectory that can be extracted from a smaller environment.
 - For views that contain an object we have that the mappings $f\$ and $g\$ are injective i.e. one-to-one.
 - For views that don't contain an object the mappings $f\$ and $g\$ are surjective.  
