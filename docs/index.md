@@ -86,4 +86,4 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 - Every entry in the action vector now describes how likely a cycle is to occurr if action $a$ is taken.
 - For a view that contains an object, the cycle value identifies a specific action that causes less cycles than the other actions.  
 - For a view that contains a non-object the cycle values are non-specific.
-- 
+- From statistical learning point of view: Non-object view is more confounded than object view.
