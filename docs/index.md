@@ -46,3 +46,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
   - For views $C$ that contain an object, we have that the projections $f\$ and $g\$ are injective i.e. one-to-one.
   - For views $C$ that don't contain an object the projections $f\$ and $g\$ are surjective.  
   - In some cases the projections may also be surjective for views with objects, however we have that $\mathbf{card}(A_{nonobj}) \gg \mathbf{card}(A_{obj})$ and  $\mathbf{card}(B_{nonobj}) \gg \mathbf{card}(B_{obj})$
+
+**Conclusion:**
+  - This is a rudimentary form of attention on objects induced by the agents behaviour in the trajectory.
+  - Manipulating an object is a salient event for the agent compared to moving inempty space not linked to an object. 
