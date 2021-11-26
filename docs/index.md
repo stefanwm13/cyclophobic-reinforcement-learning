@@ -15,6 +15,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 <dd>This environment is an extension of the DoorKey environment. Not only has the agent to pickup a key and open a door, but then drop the key and pickup the box to complete the environment and get a reward. This is especially difficult because the agent needs to understand the fact the key must be dropped after opening the door. Furthermore, the box can be destroyed if the agent uses the 'toggle' instead of the 'pickup' action.</dd>
 </dl>
 
+<br>
 
 <p align="center">
   <img src="assets/result_8x8.png">
