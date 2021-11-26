@@ -39,10 +39,10 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 <dl>
   <dt>Projections of full view to characterize objects</dt>
   <dd>
-- $f: A \rightarrow B$ is a projection of the full view $A$ and to the partial 5x5 view $B$ 
-- $g: B \rightarrow C$ is a projection of view $B$ to the smallest view $C$, which contains only the cell immediately in front of the agent.
-  - It is used as object representation!
-  <dd>
+    - $f: A \rightarrow B$ is a projection of the full view $A$ and to the partial 5x5 view $B$ 
+    - $g: B \rightarrow C$ is a projection of view $B$ to the smallest view $C$, which contains only the cell immediately in front of the agent.
+    - It is used as object representation!
+  </dd>
 - For views that contain an object we have that the mappings $f\$ and $g\$ are injective i.e. one-to-one.
 - For views that don't contain an object the mappings $f\$ and $g\$ are surjective.  
 - In some cases themappings may also be surjective for views with objects, however the number of elements in $A\$ and $B\$ is considerablys maller than in the non-object case.
