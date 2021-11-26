@@ -53,6 +53,9 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 
 
 ## Cycles as Inductive Bias for Exploration and Object Discovery
-#### Defining agent's update rule and cycle penalty as intrinsic reward
+#### Defining agent's update rule
 - We use tabular SARSA as update rule for the agent: $$Q(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r + \gamma Q\big(s_{t+1}, a_{t+1})\big)$$
-  - The new state-action value is a weighted average of the old state-action value and the state-action value of the next state-action pair plus the reward $r$.
+- The new state-action value is a weighted average of the old state-action value and the state-action value of the next state-action pair plus the reward $r$.
+#### Cycles as intrinsic reward
+- Given a sequence of states $$\bar{s} = \{s_1, s_2, \ldots, s_l$$
+- A cycle is defined as encountering the same observation twice in a sequence: $$s' = s_1 \or s' = s_2 \or \ldots \or s' = s_l$$
