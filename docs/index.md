@@ -64,7 +64,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
   - Then given state $s$, the probability that the action $a$ produces a cycle is: $p(s' | s, a)$
     
   **Cycle penalty**
-  - Say we encounter such a transition (s, a, s') which produces a cycle: 
+  - Say we encounter such a transition $\tau = \{s, a, s' \} which produces a cycle: 
     - Let $r^{ex} \in \mathbb{R}$ be the extrinsic reward i.e. the regular reward the agent receives from the environment.
     - Let $r^{c} \in \mathbb{R}$ be the intrinsic reward the agent receives for encountering a cycle.
     - The full reward for the transition then is: $$r = r^{ex} - r^{c} / N_c(s_t, a_t)$$
@@ -73,6 +73,6 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
   **Normalizing the cycle penalty**
   - An immediate cycle encountered after one step (agent is stuck) should not be weighted equally as a larger cycle.
   - We thus weigh $r^c$ according to the cycle size:
-    - Let $\tau_{t=g} = \{s_k, a_k, s_{k+1}\}$ and $\tau_{t=h} = \{s_n, a_n, s_k\}$ be two transitions that occur at timesteps $g$ and $h$. Moreover, $\tau_{t=h}$ produces a cycle as it encounters state $s_k$ from $\tau_{t=g}$.
+    - Let $\tau_{t=g} = \{s_k, a_k, s_{k+1} \}$ and $\tau_{t=h} = \{s_n, a_n, s_k \}$ be two transitions that occur at timesteps $g$ and $h$. Moreover, $\tau_{t=h}$ produces a cycle as it encounters state $s_k$ from $\tau_{t=g}$.
     - Then the cycle size is: $\lambda^c = h - g$.
     - Thus the noralized intrinsic reward $r^c$ is extended as follows: $r^c = r^c / \lambda^c$.
