@@ -53,4 +53,5 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 
 
 ## Cycles as Inductive Bias for Exploration and Object Discovery
+#### Defining agent's update rule and cycle penalty as intrinsic reward
 - We use tabular SARSA as update rule for the agent $$Q(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r + \gamma Q(s_{t+1}, a_{t+1}))$$
