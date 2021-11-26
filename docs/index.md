@@ -9,12 +9,12 @@ The cyclophobic agent is tested on 3 different environments.
 <p align="center">
   <img width="460" height="300" src=/cyclophobic-reinforcement-learning/assets/result_8x8.png">
 </p>
-![Doorkey-8x8](/cyclophobic-reinforcement-learning/assets/result_8x8.png)
-
-![Doorkey-11x11](/cyclophobic-reinforcement-learning/assets/result_11x11.png)
-
-![UnlockPickup-8x8](/cyclophobic-reinforcement-learning/assets/result_up_8x8.png)
-
+<p align="center">
+  <img width="460" height="300" src=/cyclophobic-reinforcement-learning/assets/result_11x11.png">
+</p>
+<p align="center">
+  <img width="460" height="300" src=/cyclophobic-reinforcement-learning/assets/result_up_8x8.png">
+</p>
 
 ### Structure of state-space for object and non-object views
 ![Book logo](/cyclophobic-reinforcement-learning/assets/cyclemapping.png)
