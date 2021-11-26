@@ -39,7 +39,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 <dl>
   <dt>Projections of full view to characterize objects</dt>
   <dd>
-    - $f: A \rightarrow B$ is a projection of the full view $A$ and to the partial 5x5 view $B$ 
+    - $f: A \rightarrow B$ is a projection of the full view $A$ and to the partial 5x5 view $B$. 
     - $g: B \rightarrow C$ is a projection of view $B$ to the smallest view $C$, which contains only the cell immediately in front of the agent.
     - It is used as object representation!
   </dd>
