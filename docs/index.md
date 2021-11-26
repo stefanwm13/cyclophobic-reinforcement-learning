@@ -8,7 +8,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 The cyclophobic agent is tested on 3 different environments. 
 
 <p align="center">
-  <img width="460" height="300" src="assets/result_8x8.png">
+  <img src="assets/result_8x8.png">
 </p>
 <p align="center">
   <img width="460" height="300" src="assets/result_11x11.png">
