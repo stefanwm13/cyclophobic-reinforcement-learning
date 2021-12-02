@@ -65,11 +65,11 @@ A Markov decision process (MDP) is desribed by a tuple $(\mathcal{S}, \mathcal{A
 
 ### Defining agent's update rule
 #### Action-value and cycle-value functions
-We then define the action-value function $Q$ under the MPD $(\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma)$ as  
-          $$ Q(s,a) = R(s,a) + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q(s', a') $$
+We then define the action-value function $Q$ under the MPD $(\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma)$ as,
+  $$ Q(s,a) = R(s,a) + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q(s', a') $$
 
 Analogously, we define the cycle-value function $Q_c$, where we now replace $\mathcal{R}$ with the cyclophobic intrinsic reward function $\mathcal{R}_c$,
-$$Q_c(s,a) = R_c(s,a) + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q_c(s', a')$$ 
+  $$Q_c(s,a) = R_c(s,a) + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q_c(s', a')$$ 
 
 #### Action-value and cycle-value functions for projected state space $\mathcal{S}$
 .....
@@ -77,10 +77,10 @@ $$Q_c(s,a) = R_c(s,a) + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q_
 #### Update rule
 We use tabular SARSA as update rule for the agent. 
 - For the action value function $Q$:
-          $$Q(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r + \gamma Q\big(s_{t+1}, a_{t+1})\big)$$
+  $$Q(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r + \gamma Q\big(s_{t+1}, a_{t+1})\big)$$
 
 - For the cycle value function $Q_c$:
-            $$Q_c(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r_c)$$
+  $$Q_c(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r_c)$$
 
 Note that the cyclophobic intrinsic reward is not propagated, but rather only given for the current state-action pair. Overall, we learn the action value and cycle value functions separately. First cycle value function $Q_c$ is learned. After the first successful trajectory the action value and cycle value function are added together,
 
@@ -89,14 +89,16 @@ Note that the cyclophobic intrinsic reward is not propagated, but rather only gi
 ### Cycles as intrinsic reward
   **Defining a cycle**
   - Given a sequence of states $$\bar{s} = \{s_1, s_2, \ldots, s_l \}$$
-  - A cycle is defined as encountering the same observation twice in a sequence: $$s' = s_1 \lor s' = s_2 \lor \ldots \lor s' = s_l$$, where s' is the next state producing a cycle.
+  - A cycle is defined as encountering the same observation twice in a sequence:
+  $$s' = s_1 \lor s' = s_2 \lor \ldots \lor s' = s_l$$, where s' is the next state producing a cycle.
   - Then given state $s$, the probability that the action $a$ produces a cycle is: $p(s' \mid s, a)$
     
   **Cycle penalty**
   - Say we encounter such a transition $\tau = \\{s, a, s' \\}$ which produces a cycle: 
     - Let $r^{ex} \in \mathbb{R}$ be the extrinsic reward i.e. the regular reward the agent receives from the environment.
     - Let $r^{c} \in \mathbb{R}$ be the intrinsic reward the agent receives for encountering a cycle.
-    - The full reward for the transition then is: $$r = r^{ex} - r^{c} / N_c(s_t, a_t)$$
+    - The full reward for the transition then is: 
+  $$r = r^{ex} - r^{c} / N_c(s_t, a_t)$$
       - where $N_c(s_t, a_t)$ is the number of cycles encountered for the state-action pair.
 
   **Normalizing the cycle penalty**
