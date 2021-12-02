@@ -54,6 +54,9 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 * * *
 
 ## Cycles as Inductive Bias for Exploration and Object Discovery
+### Background 
+A Markov decision process (MDP) is desribe by a tuple (\mathcal{S}, \mathcal{A}, 
+
 ### Defining agent's update rule
 - We use tabular SARSA as update rule for the agent: $$Q(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r + \gamma Q\big(s_{t+1}, a_{t+1})\big)$$
 - The new state-action value is a weighted average of the old state-action value and the state-action value of the next state-action pair plus the reward $r$.
@@ -91,3 +94,8 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 
 * * *
 ## Learning pipeline for cyclophobic agent
+
+1. First learn successful trajectory on smaller version of environment that can be solved by exploration.
+
+2. Let $\tau$ be a successful trajectory with $(s_1 a_1, s_2, a_2, \ldots, a_{n-1}, s_n)$.
+  - For each action $a_k$ in $\tau$: \sum_{i}^{n} Q(
