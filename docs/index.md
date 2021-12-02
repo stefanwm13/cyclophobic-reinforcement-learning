@@ -121,8 +121,4 @@ Note that the cyclophobic intrinsic reward is not propagated, but rather only gi
 
 * * *
 ## Learning pipeline for cyclophobic agent
-
-1. First learn successful trajectory on smaller version of environment that can be solved by exploration.
-
-2. Let $\tau$ be a successful trajectory with $(s_1 a_1, s_2, a_2, \ldots, a_{n-1}, s_n)$.
-  - For each action $a_k$ in $\tau$: \sum_{i}^{n} Q(
+......
