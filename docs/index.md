@@ -64,16 +64,17 @@ A Markov decision process (MDP) is desribed by a tuple $(\mathcal{S}, \mathcal{A
 
 
 ### Defining agent's update rule
-#### Action-value and cycle-value functions
+##### Action-value and cycle-value functions
 We then define the action-value function $Q$ under the MPD $(\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma)$ as  
 $$ Q(s,a) = R_{s}^{a} + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q(s', a') $$
 
 Analogously, we define the cycle-value function $Q_c$, where we now replace $\mathcal{R}$ with cyclophobic intrinsic reward $\mathcal{R}_c$,
 $$Q_c(s,a) = R_{c_{s}}^{a} + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q_c(s', a')$$ 
 
-#### Action-value and cycle-value functions for projected state space $\matcal{S}$
+##### Action-value and cycle-value functions for projected state space $\mathcal{S}$
+.....
 
-#### Update rule
+##### Update rule
 We use tabular SARSA as update rule for the agent. 
 - For the action value function $Q$:  $$Q(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r + \gamma Q\big(s_{t+1}, a_{t+1})\big)$$
 
