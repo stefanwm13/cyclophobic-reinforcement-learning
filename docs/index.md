@@ -7,7 +7,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 * * *
 
 ## Results
-#### The cyclophobic agent is tested on 3 different environments:
+### The cyclophobic agent is tested on 3 different environments:
 <dl>
 <dt>MiniGrid-DoorKey-8x8-v0 and MiniGrid-DoorKey-11x11-v0 </dt>
 <dd>In this environment the agent has to pickup a key to open a door. After every episode the position of key, door and wall are change randomly. This is a sparse reward environment meaning that the agent only gets a reward when reaching the green goal state. Thus, the agent has to solve the environment without any extrinsical reward as feedback about its actions.</dd>
@@ -31,7 +31,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 * * *
 
 ## Motivation for Cycles as Inductive Bias
-#### Exploiting structure of state-space for object and non-object views
+### Exploiting structure of state-space for object and non-object views
 - Given a successful trajectory or near succesful trajectory where the agent has managed to pickup the key and open the door through exploration.
 <p align="center">
   <img src="assets/cyclemapping.png">
