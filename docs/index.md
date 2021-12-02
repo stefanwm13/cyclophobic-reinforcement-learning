@@ -59,7 +59,7 @@ A Markov decision process (MDP) is desribed by a tuple $(\mathcal{S}, \mathcal{A
 - $\mathcal{S}$ is a finite set of states
 - $\mathcal{A}$ is a finite set of actions
 - $\mathcal{P}$ is a state transition probability matrix
-- $\mathcal{R}$ is a reward funcion, $\mathcal{R}_{s}^{a} = \mathbb{E}[R_{t+1} \vert S_t = s, A_t =a]$
+- $\mathcal{R}$ is a reward funcion, $\mathcal{R}_{s}^{a} = \mathbb{E}\left[R_{t+1} \mid S_t = s, A_t =a \right]$
 - $\gamma$ is a discount factor $\gamma in [0,1]$
 
 
