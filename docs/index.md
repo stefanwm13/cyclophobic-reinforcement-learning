@@ -59,12 +59,14 @@ A Markov decision process (MDP) is desribed by a tuple $(\mathcal{S}, \mathcal{A
 - $\mathcal{S}$ is a finite set of states
 - $\mathcal{A}$ is a finite set of actions
 - $\mathcal{P}$ is a state transition probability matrix
-- $\mathcal{R}$ is a reward funcion, $\mathcal{R} = \mathbb{E} \[R_{t+1} \mid S_t = s, A_t =a \]$
+- $\mathcal{R}$ is a reward funcion, $\mathcal{R}_{s}^{a} = \mathbb{E} \[R_{t+1} \mid S_t = s, A_t =a \]$
 - $\gamma$ is a discount factor $\gamma \in \[0,1\]$
 
 We then define the action-value function $Q$ under the MPD $(\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma)$ as  
 $$Q(s,a) = R_{s}^{a} + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q(s', a')$$
 
+Analogously, we define the cycle-value function $Q_c$, where we now replace $\matcal{R}$ with cyclophobic intrinsic reward $\mathcal{R}_c$,
+$$Q_c(s,a) = R_{c_{s}}^{a} + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q_c(s', a')$$ 
 
 ### Defining agent's update rule
 - We use tabular SARSA as update rule for the agent: $$Q(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r + \gamma Q\big(s_{t+1}, a_{t+1})\big)$$
