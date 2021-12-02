@@ -62,15 +62,25 @@ A Markov decision process (MDP) is desribed by a tuple $(\mathcal{S}, \mathcal{A
 - $\mathcal{R}$ is a reward funcion, $\mathcal{R}_{s}^{a} = \mathbb{E} \[R_{t+1} \mid S_t = s, A_t =a \]$
 - $\gamma$ is a discount factor $\gamma \in \[0,1\]$
 
+
+### Defining agent's update rule
+#### Action-value and cycle-value functions
 We then define the action-value function $Q$ under the MPD $(\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma)$ as  
-\[{Q(s,a) = R_{s}^{a} + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q(s', a')}\]
+$$ {Q(s,a) = R_{s}^{a} + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q(s', a') $$
 
 Analogously, we define the cycle-value function $Q_c$, where we now replace $\matcal{R}$ with cyclophobic intrinsic reward $\mathcal{R}_c$,
 $$Q_c(s,a) = R_{c_{s}}^{a} + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q_c(s', a')$$ 
 
-### Defining agent's update rule
-- We use tabular SARSA as update rule for the agent: $$Q(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r + \gamma Q\big(s_{t+1}, a_{t+1})\big)$$
-- The new state-action value is a weighted average of the old state-action value and the state-action value of the next state-action pair plus the reward $r$.
+#### Action-value and cycle-value functions for projected state space $\matcal{S}$
+
+#### Update rule
+We use tabular SARSA as update rule for the agent. 
+- For the action value function $Q$:  $$Q(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r + \gamma Q\big(s_{t+1}, a_{t+1})\big)$$
+
+- For the cycle value function $Q_c$: $$Q_c(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r_c)$$
+
+Overall, we learn the action value and cycle value functions separately. First cycle value function $Q_c$ is learned. After the first successful trajectory the action value and cycle value function are added together,
+$$Q(s,a) = Q^0(s,a) + Q^{0}_{c}(s,a) $$
 
 ### Cycles as intrinsic reward
   **Defining a cycle**
