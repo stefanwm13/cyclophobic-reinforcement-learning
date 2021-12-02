@@ -84,7 +84,7 @@ We use tabular SARSA as update rule for the agent.
 
 Note that the cyclophobic intrinsic reward is not propagated, but rather only given for the current state-action pair. Overall, we learn the action value and cycle value functions separately. First cycle value function $Q_c$ is learned. After the first successful trajectory the action value and cycle value function are added together,
 
-                                     - $$Q(s,a) = Q^0(s,a) + Q^{0}_{c}(s,a) $$
+  - $$Q(s,a) = Q^0(s,a) + Q^{0}_{c}(s,a) $$
 
 ### Cycles as intrinsic reward
   **Defining a cycle**
