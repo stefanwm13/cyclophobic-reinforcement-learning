@@ -63,7 +63,7 @@ A Markov decision process (MDP) is desribed by a tuple $(\mathcal{S}, \mathcal{A
 - $\gamma$ is a discount factor $\gamma \in \[0,1\]$
 
 
-### Defining agent's update rule
+### Defining the agent's update rule
 **Action-value and cycle-value functions**
 
 We then define the action-value function $Q$ under the MPD $(\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma)$ as,
