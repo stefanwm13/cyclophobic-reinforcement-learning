@@ -68,7 +68,7 @@ A Markov decision process (MDP) is desribed by a tuple $(\mathcal{S}, \mathcal{A
 We then define the action-value function $Q$ under the MPD $(\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma)$ as  
 $$ Q(s,a) = R_{s}^{a} + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q(s', a') $$
 
-Analogously, we define the cycle-value function $Q_c$, where we now replace $\mathcal{R}$ with cyclophobic intrinsic reward $\mathcal{R}_c$,
+Analogously, we define the cycle-value function $Q_c$, where we now replace $\mathcal{R}$ with the cyclophobic intrinsic reward function $\mathcal{R}_c$,
 $$Q_c(s,a) = R_{c_{s}}^{a} + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q_c(s', a')$$ 
 
 ##### Action-value and cycle-value functions for projected state space $\mathcal{S}$
