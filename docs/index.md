@@ -55,7 +55,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 
 ## Cycles as Inductive Bias for Exploration and Object Discovery
 ### Background 
-A Markov decision process (MDP) is desribe by a tuple (\mathcal{S}, \mathcal{A}, 
+A Markov decision process (MDP) is desribe by a tuple $(\mathcal{S}, \mathcal{A}, $
 
 ### Defining agent's update rule
 - We use tabular SARSA as update rule for the agent: $$Q(s_t, a_t) \leftarrow (1-\alpha)Q(s_t, a_t) + \alpha(r + \gamma Q\big(s_{t+1}, a_{t+1})\big)$$
