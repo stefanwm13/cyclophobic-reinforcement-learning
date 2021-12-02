@@ -69,7 +69,7 @@ We then define the action-value function $Q$ under the MPD $(\mathcal{S}, \mathc
           $$ Q(s,a) = R(s,a) + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q(s', a') $$
 
 Analogously, we define the cycle-value function $Q_c$, where we now replace $\mathcal{R}$ with the cyclophobic intrinsic reward function $\mathcal{R}_c$,
-          $$Q_c(s,a) = R_c(s,a) + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q_c(s', a')$$ 
+$$Q_c(s,a) = R_c(s,a) + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q_c(s', a')$$ 
 
 #### Action-value and cycle-value functions for projected state space $\mathcal{S}$
 .....
@@ -84,7 +84,7 @@ We use tabular SARSA as update rule for the agent.
 
 Note that the cyclophobic intrinsic reward is not propagated, but rather only given for the current state-action pair. Overall, we learn the action value and cycle value functions separately. First cycle value function $Q_c$ is learned. After the first successful trajectory the action value and cycle value function are added together,
 
-  - $$Q(s,a) = Q^0(s,a) + Q^{0}_{c}(s,a) $$
+  $$Q(s,a) = Q^0(s,a) + Q^{0}_{c}(s,a) $$
 
 ### Cycles as intrinsic reward
   **Defining a cycle**
