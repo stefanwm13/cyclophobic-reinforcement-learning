@@ -54,6 +54,7 @@ One of the trademarks of reinforcement learning is that the agent is in an exper
 * * *
 
 ## Cycles as Inductive Bias for Exploration and Object Discovery
+
 ### Background 
 A Markov decision process (MDP) is desribed by a tuple $(\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma)$
 - $\mathcal{S}$ is a finite set of states
@@ -61,6 +62,7 @@ A Markov decision process (MDP) is desribed by a tuple $(\mathcal{S}, \mathcal{A
 - $\mathcal{P}$ is a state transition probability matrix
 - $\mathcal{R}$ is a reward funcion, $\mathcal{R}(s,a) = \mathbb{E} \[R_{t+1} \mid S_t = s, A_t =a \]$
 - $\gamma$ is a discount factor $\gamma \in \[0,1\]$
+
 
 
 ### Defining the agent's update rule
@@ -71,6 +73,7 @@ We then define the action-value function $Q$ under the MPD $(\mathcal{S}, \mathc
 
 Analogously, we define the cycle-value function $Q_c$, where we now replace $\mathcal{R}$ with the cyclophobic intrinsic reward function $\mathcal{R}_c$,
   - $$Q_c(s,a) = R_c(s,a) + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q_c(s', a')$$ 
+
 
 **Action-value and cycle-value functions for projections of state space $\mathcal{S}$**
 
@@ -85,6 +88,7 @@ These 3 views induce different action-value functions and cycle-value functions 
 - $Q_{c}^{1}$ is used to determine injectivity or surjectivity in the projection $g:B \rightarrow C$.
 - $Q_{c}^{2}$ is used together with $C$ as object representation. 
 .....
+
 
 **Update rule**
 
