@@ -111,7 +111,7 @@ Overall, we learn the action value and cycle value functions separately. First c
   - A cycle is defined as encountering the same observation twice in a sequence:
     - $$s' = s_1 \lor s' = s_2 \lor \ldots \lor s' = s_l$$, where s' is the next state producing a cycle.
   - Then given state $s$, the probability that the action $a$ produces a cycle is:
-    - $$p(s' \mid bar{s}, a)$$
+    - $$p(s' \mid \bar{s}, a)$$
     
   **Cycle penalty**
   - Say we encounter such a transition $\tau = \\{s, a, s' \\}$ which produces a cycle: 
@@ -128,7 +128,7 @@ Overall, we learn the action value and cycle value functions separately. First c
     - Then the cycle size is: $\lambda^c = h - g$.
     - Thus the normalized intrinsic reward $r^c$ is extended as follows: $r^c = r^c / \lambda^c$.
   - The final full reward for the transition then is: 
-  - $$r = r^{ex} - (r^c / \lambda^c) / N_c(s_t, a_t)$$.
+    - $$r = r^{ex} - (r^c / \lambda^c) / N_c(s_t, a_t)$$.
 
 ### Cycle penalty as inductive bias for object discovery
 <p align="center">
