@@ -73,6 +73,7 @@ Analogously, we define the cycle-value function $Q_c$, where we now replace $\ma
   - $$Q_c(s,a) = R_c(s,a) + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q_c(s', a')$$ 
 
 **Action-value and cycle-value functions for projections of state space $\mathcal{S}$**
+
 We use 3 different representations of the state space:
 - The full view $A$ of the agents environment.
 - A partial 5x5 view $B$ of the agent's current position.
