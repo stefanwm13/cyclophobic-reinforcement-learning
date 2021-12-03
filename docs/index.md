@@ -74,12 +74,15 @@ Analogously, we define the cycle-value function $Q_c$, where we now replace $\ma
 
 **Action-value and cycle-value functions for projections of state space $\mathcal{S}$**
 We use 3 different representations of the state space:
-- The full view of the agents environment.
-- A partial 5x5 view of the agent's current position.
-- A partial 2x1 view of the agent's current position where it only sees what is front.
+- The full view $A$ of the agents environment.
+- A partial 5x5 view $B$ of the agent's current position.
+- A partial 2x1 view $C$ of the agent's current position where it only sees what is front.
 
 These 3 views induce different action-value functions and cycle-value functions which we denote as $Q^0, Q^1, Q^2$ and $Q_{c}^{0}, Q_{c}^{1}, Q_{c}^{2}$ respectively.
 
+- $Q^{0}$ and $Q_{c}^{0}$ are used for the agents higher level control to navigate the environment.
+- $Q_{c}^{1} is used to determine injectivity or surjectivity in the projection $g:B \rightarrow C$.
+- $Q_{c}^{2} is used together with $C$ as object representation. 
 .....
 
 **Update rule**
