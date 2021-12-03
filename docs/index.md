@@ -72,7 +72,13 @@ We then define the action-value function $Q$ under the MPD $(\mathcal{S}, \mathc
 Analogously, we define the cycle-value function $Q_c$, where we now replace $\mathcal{R}$ with the cyclophobic intrinsic reward function $\mathcal{R}_c$,
   - $$Q_c(s,a) = R_c(s,a) + \gamma \sum_{s'}P_{ss'}^{a} \sum_{a'} \pi(a' \mid s') Q_c(s', a')$$ 
 
-**Action-value and cycle-value functions for projected state space $\mathcal{S}$**
+**Action-value and cycle-value functions for projections of state space $\mathcal{S}$**
+We use 3 different representations of the state space:
+- The full view of the agents environment.
+- A partial 5x5 view of the agent's current position.
+- A partial 2x1 view of the agent's current position where it only sees what is front.
+
+These 3 views induce different action-value functions and cycle-value functions which we denote as $Q^0, Q^1, Q^2$ and $Q_{c}^{0}, Q_{c}^{1}, Q_{c}^{2}$ respectively.
 
 .....
 
