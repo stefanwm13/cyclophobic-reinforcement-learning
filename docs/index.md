@@ -82,8 +82,8 @@ We use 3 different representations of the state space:
 These 3 views induce different action-value functions and cycle-value functions which we denote as $Q^0, Q^1, Q^2$ and $Q_{c}^{0}, Q_{c}^{1}, Q_{c}^{2}$ respectively.
 
 - $Q^{0}$ and $Q_{c}^{0}$ are used for the agents higher level control to navigate the environment.
-- $Q_{c}^{1} is used to determine injectivity or surjectivity in the projection $g:B \rightarrow C$.
-- $Q_{c}^{2} is used together with $C$ as object representation. 
+- $Q_{c}^{1}$ is used to determine injectivity or surjectivity in the projection $g:B \rightarrow C$.
+- $Q_{c}^{2}$ is used together with $C$ as object representation. 
 .....
 
 **Update rule**
