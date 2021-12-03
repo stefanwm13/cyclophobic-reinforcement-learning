@@ -86,8 +86,7 @@ These 3 views induce different action-value functions and cycle-value functions 
 
 - $Q^{0}$ and $Q_{c}^{0}$ are used for the agents higher level control to navigate the environment.
 - $Q_{c}^{1}$ is used to determine injectivity or surjectivity in the projection $g:B \rightarrow C$.
-- $Q_{c}^{2}$ is used together with $C$ as object representation. 
-.....
+- $Q_{c}^{2}$ is the cycle-value function associated to view $C$ which is used as object representation. 
 
 
 **Update rule**
@@ -127,8 +126,9 @@ Overall, we learn the action value and cycle value functions separately. First c
     - Let $\tau_{t=g} = \\{s_k, a_k, s_{k+1} \\}$ and $\tau_{t=h} = \\{s_n, a_n, s_k \\}$ be two transitions that occur at timesteps $g$ and $h$. Moreover, $\tau_{t=h}$ produces a cycle as it encounters state $s_k$ from $\tau_{t=g}$.
     - Then the cycle size is: $\lambda^c = h - g$.
     - Thus the normalized intrinsic reward $r^c$ is extended as follows: $r^c = r^c / \lambda^c$.
-    - The final full reward for the transition then is: 
-      - $$r = r^{ex} - (r^c / \lambda^c) / N_c(s_t, a_t)$$
+     
+The final cyclophobic intrinsic reward for the transition then is:
+  - $$r = r^{ex} - (r^c / \lambda^c) / N_c(s_t, a_t)$$
 
 ### Cycle penalty as inductive bias for object discovery
 <p align="center">
