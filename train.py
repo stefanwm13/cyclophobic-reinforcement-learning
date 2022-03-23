@@ -15,6 +15,8 @@ from causal_helpers import CausalUtils
 from runnables import Runnables
 
 #from A2C.main import init_nn
+from DQN.main import init_nn
+#from non-linear.torch-ac
 
 import numpy as np
 import pickle
@@ -25,75 +27,80 @@ from pynput.keyboard import Listener, Key
 class Train:
     def __init__(self, num_levels):
         self.agent = Agent(num_levels)
-        
+        self.show_window = False
+        self.stop_time = 0
+
     def reset_agent(self, num_levels):
         self.agent = Agent(num_levels)
-    
+
 
 """
     Key handler to debug the agent.
 """
 def on_press(key):
     global runner
-    if key == Key.space:  
-        if runner.show_window == False:
-            runner.show_window = True
+    global trainer
+    if key == Key.space:
+        if trainer.show_window == False:
+            trainer.show_window = True
+            print(trainer.show_window)
         else:
-            runner.show_window = False
-            
+            trainer.show_window = False
+
     if key == Key.tab:
         if runner.explore:
             runner.explore = False
         else:
             runner.explore = True
-        
+
         print("EXPLORATION: ", runner.explore)
 
-    
+
     if str(key) == "'k'":
-        runner.stop_time = runner.stop_time + 1
-        print("ST INCREASE: ", runner.stop_time)
-        
+        trainer.stop_time = trainer.stop_time + 1
+        print("ST INCREASE: ", trainer.stop_time)
+
     if str(key) == "'j'":
-        runner.stop_time = runner.stop_time - 1
-        print("ST DECREASE: ", runner.stop_time)
-  
-  
-  
-            
+        if trainer.stop_time > 0:
+            trainer.stop_time = trainer.stop_time - 1
+            print("ST DECREASE: ", trainer.stop_time)
+        else:
+            print("NORMAL SPEED")
+
+
 """
     Main entry point.
 """
 runner = None
+trainer = None
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--n_train', type=int, default=1)
     parser.add_argument('--n_episodes', type=int, default=1000)
     parser.add_argument('--file_name', type=str, default='cycle')
-    
+
     args = parser.parse_args()
-    
+
     file_name = args.file_name
-    
+
     save = True
-    success_traject = None
-    best_action_dict = {}
-    
-    trainer = Train(1)
+
+    trainer = Train(3)
     runner = Runner(trainer.agent, args.n_episodes)
     utils = CausalUtils(runner)
 
-    runnable = Runnables().RunnableAtari(trainer, runner, utils)
+    runnable = Runnables().RunnableUnlockPickup()
+
     with Listener(on_press=on_press) as listener:
         for i in range(args.n_train):
             if save:
-                runnable.run(args, i, save)
+                runnable.run(args, i, save, trainer)
             else:
-                runner = runnable.load()
-                best_action_dict = runnable.run(args, i, save)
+                runnable.load()
+                runnable.run(args, i, save, trainer)
 
-            
-            #init_nn("MiniGrid-DoorKeyY-8x8-v0", best_action_dict)
-            
-            
+            runnable.test(args, i, trainer, runner)
+
+        #init_nn("MiniGrid-DoorKeyY-8x8-v0", None)
+
         listener.join()

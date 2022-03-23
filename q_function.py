@@ -3,9 +3,6 @@ from function import TabularFunction
 from collections import deque
 import random
 
-'''
-    This class describes an agent that is updated with tabular q-learning
-'''
 class QFunction(TabularFunction):
     def __init__(self):
         super().__init__()

@@ -12,10 +12,7 @@ from gym_minigrid import wrappers as mg_wrappers
 
 from qtable import QTableFactory
 
-'''
-    This is the parent class of the agent. From here we specify the cycle and q agent.
 
-'''
 
 class TabularFunction:
     def __init__(self):

@@ -1,9 +1,5 @@
 import numpy as np
 
-'''
-    This collection of classes wraps different kinds of qtables and provides access to them.
-'''
-
 class QTableFactory:  
     @staticmethod
     def create(params=[8,8,4]):
