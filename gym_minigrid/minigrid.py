@@ -8,7 +8,7 @@ from .rendering import *
 
 # Size in pixels of a tile in the full-scale human view
 TILE_PIXELS = 32
-agent_view_size_nxn = 5
+agent_view_size_nxn = 3
 # Map of color names to RGB values
 COLORS = {
     'red'   : np.array([255, 0, 0]),
@@ -427,7 +427,7 @@ class Grid:
         """
 
         grid = Grid(width, height)
-    
+
         for j in range(0, height):
             for i in range(0, width):
                 x = topX + i
@@ -440,7 +440,7 @@ class Grid:
                     v = Wall()
 
                 grid.set(i, j, v)
-                
+
         return grid
 
 
@@ -450,13 +450,13 @@ class Grid:
         """
 
         grid = Grid(width, height)
-    
-        
+
+
         for j in range(0, height):
             for i in range(0, width):
                 x = topX + i
                 y = topY + j
-                
+
                 if x == topX+1 and y == topY+1:
                     #print("X: ", x)
                     #print("Y: ", y)
@@ -710,7 +710,7 @@ class MiniGridEnv(gym.Env):
 
         # Number of cells (width and height) in the agent view
         self.agent_view_size = agent_view_size
-        
+
 
         # Observations are dictionaries containing an
         # encoding of the grid and a textual 'mission' string
@@ -1004,7 +1004,7 @@ class MiniGridEnv(gym.Env):
 
         if rand_dir:
             self.agent_dir = self._rand_int(0, 4)
-            
+
         #print(self.agent_dir, self.agent_pos)
 
         return pos
@@ -1225,7 +1225,7 @@ class MiniGridEnv(gym.Env):
         obs = self.gen_obs()
 
         #print(self.agent_pos)
-        return obs, reward, done, {"pos_dir":[self.agent_pos, self.agent_dir]}, 
+        return obs, reward, done, {"pos_dir":[self.agent_pos, self.agent_dir]},
 
     def gen_obs_grid_nxn(self):
         """
